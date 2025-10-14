@@ -1,0 +1,189 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║        📦 SISTEMA DE GESTIÓN DE ENVÍOS Y RASTREO DE PAQUETES 📫             ║
+║                                                                              ║
+║                          Spring WebFlux + Cloud Gateway                      ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+👋 ¡Bienvenido al proyecto!
+
+Este es un sistema completo de microservicios reactivos desarrollado con:
+  • Spring WebFlux
+  • Spring Cloud Gateway
+  • Programación Reactiva (Reactor)
+  • Docker (opcional)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 INICIO RÁPIDO
+
+Para poner en marcha el proyecto en menos de 5 minutos:
+
+  1. Abre una terminal en esta carpeta
+  
+  2. Ejecuta el script de inicio:
+     ./start-services.sh
+     
+  3. Espera 30-45 segundos mientras los servicios inician
+  
+  4. Abre Postman e importa la colección:
+     Gestion_Envios_Rastreo.postman_collection.json
+     
+  5. ¡Comienza a probar los endpoints!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 DOCUMENTACIÓN
+
+El proyecto incluye documentación completa:
+
+  📘 README.md           → Documentación técnica completa
+  ⚡ GUIA_RAPIDA.md      → Inicio rápido (< 5 min)
+  🎓 DEMOSTRACION.md     → Guía para presentación
+  📊 RESUMEN.md          → Vista general del proyecto
+  📑 INDICE.md           → Índice de toda la documentación
+
+Recomendación: Comienza con INDICE.md para navegar fácilmente.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🏗️ ARQUITECTURA
+
+                    ┌─────────────────┐
+                    │   API Gateway   │ :8080
+                    └────────┬────────┘
+                             │
+                ┌────────────┴────────────┐
+                │                         │
+        ┌───────▼────────┐        ┌──────▼─────────┐
+        │   Shipments    │        │   Packages     │
+        │   Service      │        │   Service      │
+        │     :8081      │        │     :8082      │
+        └────────────────┘        └────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔗 URLs DE ACCESO
+
+Una vez iniciados los servicios:
+
+  API Gateway:          http://localhost:8080
+  Shipments Service:    http://localhost:8081
+  Packages Service:     http://localhost:8082
+  
+  Health Checks:
+  ✓ Gateway:    http://localhost:8080/actuator/health
+  ✓ Shipments:  http://localhost:8081/actuator/health
+  ✓ Packages:   http://localhost:8082/actuator/health
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛠️ SCRIPTS DISPONIBLES
+
+  ./start-services.sh     → Iniciar todos los servicios
+  ./stop-services.sh      → Detener todos los servicios
+  ./test-endpoints.sh     → Probar todos los endpoints
+  ./comandos-utiles.sh    → Ver comandos útiles
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📦 ESTRUCTURA DEL PROYECTO
+
+parcial/
+├── gateway/                # API Gateway (8080)
+├── ms-shipments/          # Microservicio Envíos (8081)
+├── ms-packages/           # Microservicio Paquetes (8082)
+├── *.postman_collection   # Colección de Postman
+├── docker-compose.yml     # Docker Compose
+└── *.md                   # Documentación
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ CHECKLIST PREVIO A LA DEMOSTRACIÓN
+
+  [ ] Leer DEMOSTRACION.md
+  [ ] Compilar todos los proyectos (mvn clean install)
+  [ ] Iniciar servicios con ./start-services.sh
+  [ ] Verificar health checks
+  [ ] Importar colección en Postman
+  [ ] Probar todos los endpoints
+  [ ] Practicar la demostración
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 PRUEBAS CON POSTMAN
+
+  1. Importar: Gestion_Envios_Rastreo.postman_collection.json
+  2. Importar entorno: Postman_Environment.json
+  3. Seleccionar entorno "Gestión de Envíos - Local"
+  4. Ejecutar carpetas de pruebas
+
+Incluye:
+  ✓ 6 requests para Shipments (GET, POST, PUT, DELETE)
+  ✓ 6 requests para Packages (GET, POST, PUT, DELETE)
+  ✓ 3 requests de Health Checks
+  ✓ Casos de error de validación
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 CARACTERÍSTICAS PRINCIPALES
+
+  ✓ Arquitectura de microservicios con API Gateway
+  ✓ Programación reactiva (WebFlux, Mono/Flux)
+  ✓ CRUD completo en ambos servicios
+  ✓ Validación de datos con Bean Validation
+  ✓ Manejo global de errores
+  ✓ Códigos HTTP apropiados
+  ✓ Dockerización completa (opcional)
+  ✓ Documentación exhaustiva
+  ✓ Scripts de automatización
+  ✓ Colección de Postman completa
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 INFORMACIÓN DEL PROYECTO
+
+  Autor:        Edson Gutiérrez
+  Tema:         Gestión de envíos y rastreo de paquetes
+  Framework:    Spring WebFlux + Spring Cloud Gateway
+  Fecha:        14 de octubre de 2025
+  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 CONSEJOS
+
+  • Si es tu primera vez, lee INDICE.md para orientarte
+  • Para inicio rápido, sigue GUIA_RAPIDA.md
+  • Antes de la demo, estudia DEMOSTRACION.md
+  • Si algo falla, consulta el Troubleshooting en README.md
+  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚨 SOLUCIÓN RÁPIDA DE PROBLEMAS
+
+  Puertos ocupados:
+    lsof -ti:8080 | xargs kill -9
+    lsof -ti:8081 | xargs kill -9
+    lsof -ti:8082 | xargs kill -9
+    
+  Reiniciar servicios:
+    ./stop-services.sh
+    ./start-services.sh
+    
+  Ver logs:
+    tail -f logs/gateway.log
+    tail -f logs/shipments.log
+    tail -f logs/packages.log
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                        ¡Éxito con tu proyecto! 🚀
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Para comenzar, ejecuta:
+
+    cat INDICE.md          # Ver índice de documentación
+    ./start-services.sh    # Iniciar servicios
+    

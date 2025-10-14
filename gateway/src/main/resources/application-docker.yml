@@ -1,0 +1,70 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # Rutas para Microservicio de Envíos (Shipments)
+        - id: shipments-service
+          uri: ${SHIPMENTS_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/shipments/**
+          filters:
+            - RewritePath=/api/shipments/(?<segment>.*), /api/shipments/$\{segment}
+        
+        # Rutas para Microservicio de Paquetes (Packages)
+        - id: packages-service
+          uri: ${PACKAGES_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/packages/**
+          filters:
+            - RewritePath=/api/packages/(?<segment>.*), /api/packages/$\{segment}
+      
+      # Configuración global de CORS
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+
+# Actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+  cloud:
+    gateway:
+      routes:
+        - id: shipments-service
+          uri: http://ms-shipments:8081
+          predicates:
+            - Path=/api/shipments/**
+        - id: packages-service
+          uri: http://ms-packages:8082
+          predicates:
+            - Path=/api/packages/**

@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Gestión de Envíos y Rastreo de Paquetes",
+		"description": "Colección completa de pruebas para los microservicios de gestión de envíos y rastreo de paquetes con Spring WebFlux y API Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Shipments Service",
+			"item": [
+				{
+					"name": "GET - Listar todos los envíos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/api/shipments",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"shipments"
+							]
+						},
+						"description": "Obtiene la lista completa de envíos"
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Obtener envío por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/api/shipments/1",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"shipments",
+								"1"
+							]
+						},
+						"description": "Obtiene los detalles de un envío específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Crear nuevo envío",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trackingNumber\": \"TRK003\",\n  \"origin\": \"Tijuana\",\n  \"destination\": \"Cancún\",\n  \"senderName\": \"Roberto Sánchez\",\n  \"recipientName\": \"Laura Fernández\",\n  \"recipientAddress\": \"Blvd. Kukulcán Km 12.5\",\n  \"weight\": 8.5,\n  \"status\": \"PENDING\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/api/shipments",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"shipments"
+							]
+						},
+						"description": "Crea un nuevo envío en el sistema"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Actualizar envío",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trackingNumber\": \"TRK001\",\n  \"origin\": \"Ciudad de México\",\n  \"destination\": \"Guadalajara\",\n  \"senderName\": \"Juan Pérez\",\n  \"recipientName\": \"María García\",\n  \"recipientAddress\": \"Av. Principal 123\",\n  \"weight\": 5.5,\n  \"status\": \"DELIVERED\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/api/shipments/1",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"shipments",
+								"1"
+							]
+						},
+						"description": "Actualiza la información de un envío existente"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Eliminar envío",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/api/shipments/2",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"shipments",
+								"2"
+							]
+						},
+						"description": "Elimina un envío del sistema"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Crear envío (validación error)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trackingNumber\": \"\",\n  \"origin\": \"Tijuana\",\n  \"destination\": \"\",\n  \"senderName\": \"Roberto Sánchez\",\n  \"recipientName\": \"\",\n  \"recipientAddress\": \"Blvd. Kukulcán Km 12.5\",\n  \"weight\": -5,\n  \"status\": \"PENDING\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/api/shipments",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"shipments"
+							]
+						},
+						"description": "Ejemplo de error de validación - campos vacíos y peso negativo"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestión de envíos"
+		},
+		{
+			"name": "Packages Service",
+			"item": [
+				{
+					"name": "GET - Listar todos los paquetes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/api/packages",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"packages"
+							]
+						},
+						"description": "Obtiene la lista completa de paquetes en rastreo"
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Obtener paquete por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/api/packages/1",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"packages",
+								"1"
+							]
+						},
+						"description": "Obtiene los detalles de rastreo de un paquete específico"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Crear nuevo paquete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trackingNumber\": \"TRK003\",\n  \"description\": \"Ropa y accesorios\",\n  \"currentLocation\": \"Centro de Distribución Tijuana\",\n  \"lastCheckpoint\": \"Recepción inicial\",\n  \"estimatedDeliveryDays\": 3.5,\n  \"trackingStatus\": \"REGISTERED\",\n  \"notes\": \"Paquete con artículos de moda\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/api/packages",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"packages"
+							]
+						},
+						"description": "Registra un nuevo paquete para rastreo"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Actualizar paquete",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trackingNumber\": \"TRK001\",\n  \"description\": \"Electrónicos - Laptop Dell\",\n  \"currentLocation\": \"En ruta de entrega final\",\n  \"lastCheckpoint\": \"Centro de Distribución Guadalajara\",\n  \"estimatedDeliveryDays\": 0.5,\n  \"trackingStatus\": \"OUT_FOR_DELIVERY\",\n  \"notes\": \"Paquete frágil, manejar con cuidado - Actualización: en reparto\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/api/packages/1",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"packages",
+								"1"
+							]
+						},
+						"description": "Actualiza el estado de rastreo de un paquete"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Eliminar paquete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/api/packages/2",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"packages",
+								"2"
+							]
+						},
+						"description": "Elimina un paquete del sistema de rastreo"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Crear paquete (validación error)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trackingNumber\": \"\",\n  \"description\": \"\",\n  \"currentLocation\": \"Centro de Distribución\",\n  \"lastCheckpoint\": \"\",\n  \"estimatedDeliveryDays\": -1,\n  \"trackingStatus\": \"\",\n  \"notes\": \"Test de validación\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/api/packages",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"api",
+								"packages"
+							]
+						},
+						"description": "Ejemplo de error de validación - campos vacíos y días negativos"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para rastreo de paquetes"
+		},
+		{
+			"name": "Health Checks",
+			"item": [
+				{
+					"name": "Gateway Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Verifica el estado del API Gateway"
+					},
+					"response": []
+				},
+				{
+					"name": "Shipments Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Verifica el estado del microservicio de envíos"
+					},
+					"response": []
+				},
+				{
+					"name": "Packages Service Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/actuator/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Verifica el estado del microservicio de paquetes"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para verificar el estado de los servicios"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gateway_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "shipments_url",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "packages_url",
+			"value": "http://localhost:8082",
+			"type": "string"
+		}
+	]
+}
