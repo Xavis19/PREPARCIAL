@@ -378,7 +378,7 @@ curl http://localhost:8082/actuator/health
 
 ## 👨‍💻 Autor
 
-**Edson Gutiérrez**
+**Javier Gutiérrez**
 - Tema: Gestión de envíos y rastreo de paquetes
 
 ## 📄 Licencia
